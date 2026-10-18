@@ -16,7 +16,7 @@ import java.util.List;
 @Data // get e set
 @Table (name = "equipamentos")
 @Entity
-public class Equipamentos {
+public class Equipamento {
 
     // id do equipamento
     @Id // chave primeira
