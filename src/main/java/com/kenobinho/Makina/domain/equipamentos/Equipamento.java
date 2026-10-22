@@ -24,6 +24,7 @@ public class Equipamento {
     private Long id;
 
     // numero de patrimonio (opcional)
+    @Column(unique = true)
     private String numeroPatrimonio;
 
     //de onde o equipamento veio
