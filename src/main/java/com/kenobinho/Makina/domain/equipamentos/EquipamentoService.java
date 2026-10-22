@@ -31,7 +31,7 @@ public class EquipamentoService {
     }
 
     // listar todos os equipamentos
-    public List<Equipamento> ListarTodosEquipamentos() {
+public List<Equipamento> listarTodosEquipamentos() {
         return equipamentoRepository.findAll();
     }
 
