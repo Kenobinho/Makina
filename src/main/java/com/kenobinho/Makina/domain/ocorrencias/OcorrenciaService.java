@@ -61,7 +61,9 @@ public class OcorrenciaService {
         //busca id
         Ocorrencia ocorrencia = buscarPorId(ocorrenciaId);
 
-        //pede para colocar solução
+        if (solucaoAplicada == null || solucaoAplicada.isBlank()) {
+            throw new IllegalArgumentException("A solução aplicada é obrigatória");
+        }
         ocorrencia.setSolucaoAplicada(solucaoAplicada);
 
         // [ede nome da pessoa que retirou
