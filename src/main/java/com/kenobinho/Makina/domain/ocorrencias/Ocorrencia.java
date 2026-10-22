@@ -48,6 +48,8 @@ public class Ocorrencia {
 
     @ManyToOne
     @JoinColumn(name = "equipamento_id", nullable = false)
-    @JsonIgnore
-    private Equipamento equipamento;
+@JsonIgnore
+@lombok.ToString.Exclude
+@lombok.EqualsAndHashCode.Exclude
+private Equipamento equipamento;
 }
