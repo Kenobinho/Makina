@@ -23,21 +23,22 @@ public class Equipamento {
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
 
-    // codigo do dispositivo no sistema
-    @Column(unique = true)
-    private String codigoInterno;
-
     // numero de patrimonio (opcional)
+    @Column(unique = true)
     private String numeroPatrimonio;
 
     //de onde o equipamento veio
     private String setorOrigem;
+
+
+    @Enumerated(EnumType.STRING)
+    private TipoEquipamento tipoEquipamento;
 
     //descrição (opcional)
     private String descricao;
 
 
     //historico de coorrencias
-    @OneToMany(MappedBy= "equipamento", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy= "equipamento", cascade = CascadeType.ALL)
     private List<Ocorrencia> ocorrencias;
 }
