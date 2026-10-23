@@ -14,7 +14,7 @@ Não é um sistema de chamados (help desk): quem registra as ocorrências é o p
 2. O técnico abre uma **ocorrência** vinculada ao equipamento informando quem o entregou e o problema relatado (com data/hora de entrada e status inicial gerados automaticamente).
 3. A ocorrência passa pelos status: `ABERTA` → `EM_BANCADA` → `AGUARDANDO_PECA` → `CONCLUIDA` (ou `CANCELADA`).
 4. Ao concluir, o técnico registra obrigatoriamente a **solução aplicada** e quem retirou o equipamento, cravando a data/hora de saída.
-5. O histórico completo de manutenções do equipamento pode ser consultado a qualquer momento pelo ID ou pelo número de patrimônio.
+5. O histórico completo de manutenções do equipamento pode ser consultado a qualquer momento pelo ID.
 
 ## Funcionalidades planejadas
 
