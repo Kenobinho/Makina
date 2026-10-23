@@ -17,7 +17,7 @@ public class OcorrenciaController {
 
 
     // abrir uma ocorrencia
-    @PostMapping
+@PostMapping("/equipamento/{equipamentoId}")
     public ResponseEntity<Ocorrencia> abrirOcorrencia(
             @PathVariable Long equipamentoId,
             @RequestBody Ocorrencia novaOcorrencia) {
