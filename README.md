@@ -10,30 +10,30 @@ Não é um sistema de chamados (help desk): quem registra as ocorrências é o p
 
 ## Como funciona
 
-1. O equipamento chega e é cadastrado. O sistema gera um **código interno** (ex.: `MK-0001`) para etiquetar a máquina. Se ela já tiver um **número de patrimônio**, ele pode ser informado também.
-2. O técnico abre uma **ocorrência** com o problema relatado.
-3. A ocorrência passa pelos status: *Na fila → Em bancada → Aguardando peça → Pausado → Concluído*.
-4. Ao concluir, o técnico registra a **solução aplicada**.
-5. O histórico do equipamento pode ser consultado a qualquer momento, pelo código interno ou pelo patrimônio.
+1. O equipamento chega e é cadastrado com seu tipo, setor de origem e um **ID único** gerado pelo sistema. Se a máquina tiver um **número de patrimônio** físico, ele também pode ser informado (opcional e único).
+2. O técnico abre uma **ocorrência** vinculada ao equipamento informando quem o entregou e o problema relatado (com data/hora de entrada e status inicial gerados automaticamente).
+3. A ocorrência passa pelos status: `ABERTA` → `EM_BANCADA` → `AGUARDANDO_PECA` → `CONCLUIDA` (ou `CANCELADA`).
+4. Ao concluir, o técnico registra obrigatoriamente a **solução aplicada** e quem retirou o equipamento, cravando a data/hora de saída.
+5. O histórico completo de manutenções do equipamento pode ser consultado a qualquer momento pelo ID ou pelo número de patrimônio.
 
 ## Funcionalidades planejadas
 
-- [ ] Cadastrar novo equipamento
-- [ ] Abrir ocorrência
-- [ ] Consultar histórico do equipamento
-- [ ] Atualizar status da ocorrência
-- [ ] Registrar observação ou pausa
-- [ ] Encerrar ocorrência (exige a solução aplicada)
+- [x] Cadastrar novo equipamento
+- [x] Abrir ocorrência vinculada ao equipamento
+- [x] Consultar histórico do equipamento
+- [x] Atualizar status da ocorrência (`ABERTA`, `EM_BANCADA`, `AGUARDANDO_PECA`, `CANCELADA`)
+- [x] Encerrar ocorrência (exige a solução aplicada e registra quem retirou)
 - [ ] Login com autenticação via token (JWT)
-- [ ] Controle de acesso por perfis de usuário
+- [ ] Controle de acesso por perfis de usuário (Roles)
 
 ## Tecnologias
 
 - Java 25
-- Spring Boot (Web, Data JPA, Validation)
+- Spring Boot (Web, Data JPA)
 - Spring Security com JWT
+- Lombok
 - MySQL
 
 ## Status
 
-🚧 Em desenvolvimento.
+🚧 Em desenvolvimento (API core concluída; iniciando módulo de Autenticação e Segurança).
