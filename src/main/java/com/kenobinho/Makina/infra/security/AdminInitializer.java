@@ -21,7 +21,7 @@ public class AdminInitializer implements CommandLineRunner {
 
         // se não existir um admin ele via criar automaticamente
         // essa parte é apenas para facilitar minha vida na apresentação
-        if (usuarioRepository.findByLogin("admin") == null) {
+if (usuarioRepository.count() == 0) {
             var senhaCriptografia = passwordEncoder.encode("admin123");
             var admin = new Usuario("admin", senhaCriptografia, PerfilUsuario.ADMIN);
             usuarioRepository.save(admin);
