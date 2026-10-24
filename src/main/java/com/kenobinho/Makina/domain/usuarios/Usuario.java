@@ -28,14 +28,18 @@ public class Usuario implements UserDetails {
     private String login;
     private String senha;
 
-    public Usuario(String login, String senha) {
+    @Enumerated(EnumType.STRING)
+    private PerfilUsuario perfil;
+
+    public Usuario(String login, String senha, PerfilUsuario perfil) {
         this.login = login;
         this.senha = senha;
+        this.perfil = perfil;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        return List.of(new SimpleGrantedAuthority("ROLE_"+this.perfil.name()));
     }
 
     //

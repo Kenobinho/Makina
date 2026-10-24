@@ -30,7 +30,7 @@ public class UsuarioController {
 
         // criptografa senha e salva usuario
         var senhaCriptografada = passwordEncoder.encode(dados.senha());
-        var usuario = new Usuario(dados.login(), senhaCriptografada);
+        var usuario = new Usuario(dados.login(), senhaCriptografada, dados.perfil());
         repository.save(usuario);
 
         // devolver status http de criação

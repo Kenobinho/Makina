@@ -1,6 +1,6 @@
 package com.kenobinho.Makina.domain.ocorrencias;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kenobinho.Makina.domain.equipamentos.Equipamento;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -50,7 +50,7 @@ public class Ocorrencia {
 
     @ManyToOne
     @JoinColumn(name = "equipamento_id", nullable = false)
-@JsonIgnore
+@JsonIgnoreProperties("ocorrencias")
 @lombok.ToString.Exclude
 @lombok.EqualsAndHashCode.Exclude
 private Equipamento equipamento;

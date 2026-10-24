@@ -57,6 +57,9 @@ public class OcorrenciaService {
 
     @Transactional
     public Ocorrencia atualizarStatus(Long ocorrenciaId, StatusOcorrencia novoStatus) {
+        if (novoStatus == StatusOcorrencia.CONCLUIDA) {
+            throw new IllegalArgumentException("Para concluir uma ocorrência, utilize a rota de finalização!");
+        }
         Ocorrencia ocorrencia = buscarPorId(ocorrenciaId);
         ocorrencia.setStatusOcorrencia(novoStatus);
         return ocorrencia;
