@@ -22,7 +22,7 @@ public class EquipamentoService {
     @Transactional
     public Equipamento cadastrarEquipamento(DadosCadastroEquipamento dados) {
         Equipamento equipamento = new Equipamento();
-        equipamento.setNumeroPatrimonio(dados.numeroPatrimonio());
+        equipamento.setNumeroPatrimonio(dados.numeroPatrimonio() == null || dados.numeroPatrimonio().isBlank() ? null : dados.numeroPatrimonio().trim());
         equipamento.setSetorOrigem(dados.setorOrigem().trim().toUpperCase());
         equipamento.setTipoEquipamento(dados.tipoEquipamento());
         equipamento.setDescricao(dados.descricao());
