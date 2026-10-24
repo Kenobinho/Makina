@@ -3,6 +3,7 @@ package com.kenobinho.Makina.infra.security;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -27,9 +28,25 @@ public class SecurityConfigurations {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(req -> {
+
+
+                    // qualquer um pode tentar o login
                 req.requestMatchers("/login").permitAll();
-                req.requestMatchers("/cadastro").permitAll();
-                req.anyRequest().authenticated(); // bloqueia se não tiver token
+
+                // somente o admin pode cadastrar os tecnicos
+                req.requestMatchers("/cadastro").hasRole("ADMIN");
+
+                // Qualquer cargo pode dar um get
+                req.requestMatchers(HttpMethod.GET, "/equipamentos/**").hasAnyRole("ADMIN", "TECNICO", "USUARIO");
+                req.requestMatchers(HttpMethod.GET, "/ocorrencias/**").hasAnyRole("ADMIN", "TECNICO", "USUARIO");
+
+                req.requestMatchers(HttpMethod.POST, "/equipamentos/**").hasAnyRole("ADMIN", "TECNICO");
+                req.requestMatchers(HttpMethod.POST, "/ocorrencias/**").hasAnyRole("ADMIN", "TECNICO");
+                req.requestMatchers(HttpMethod.PATCH, "/ocorrencias/**").hasAnyRole("ADMIN", "TECNICO");
+
+
+
+                req.anyRequest().hasRole("ADMIN"); // o restante so passa se for admin
                 })
                 //filtro do token antes
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class).build();
