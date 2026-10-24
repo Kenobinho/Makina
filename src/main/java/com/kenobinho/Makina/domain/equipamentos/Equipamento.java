@@ -41,4 +41,5 @@ public class Equipamento {
     //historico de coorrencias
     @OneToMany(mappedBy= "equipamento", cascade = CascadeType.ALL)
     private List<Ocorrencia> ocorrencias;
+
 }

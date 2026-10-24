@@ -1,6 +1,7 @@
 package com.kenobinho.Makina.domain.equipamentos;
 
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +18,8 @@ public class EquipamentoController {
 
 
     @PostMapping // criar um equipamento
-    public ResponseEntity<Equipamento> cadastrarEquipamento(@RequestBody Equipamento equipamento) {
-        Equipamento salvo = equipamentoService.cadastrarEquipamento(equipamento);
+    public ResponseEntity<Equipamento> cadastrarEquipamento(@RequestBody @Valid DadosCadastroEquipamento dados) {
+        Equipamento salvo = equipamentoService.cadastrarEquipamento(dados);
         return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
     }
 

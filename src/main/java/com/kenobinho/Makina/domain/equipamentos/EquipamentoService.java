@@ -1,6 +1,5 @@
 package com.kenobinho.Makina.domain.equipamentos;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,12 +20,12 @@ public class EquipamentoService {
 
     //cadastrar o equipamento no sistema
     @Transactional
-    public Equipamento cadastrarEquipamento(Equipamento equipamento) {
-
-        if (equipamento.getSetorOrigem() != null) {
-            equipamento.setSetorOrigem(equipamento.getSetorOrigem().trim().toUpperCase());
-        }
-
+    public Equipamento cadastrarEquipamento(DadosCadastroEquipamento dados) {
+        Equipamento equipamento = new Equipamento();
+        equipamento.setNumeroPatrimonio(dados.numeroPatrimonio() == null || dados.numeroPatrimonio().isBlank() ? null : dados.numeroPatrimonio().trim());
+        equipamento.setSetorOrigem(dados.setorOrigem().trim().toUpperCase());
+        equipamento.setTipoEquipamento(dados.tipoEquipamento());
+        equipamento.setDescricao(dados.descricao());
         return equipamentoRepository.save(equipamento);
     }
 

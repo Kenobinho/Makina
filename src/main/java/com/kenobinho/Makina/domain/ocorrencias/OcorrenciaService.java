@@ -40,12 +40,18 @@ public class OcorrenciaService {
     }
 
 
-    @Transactional // abrir ocorrencia
-    public Ocorrencia abrirOcorrencia (Long equipamentoId, Ocorrencia novaOcorrencia) {
+    @Transactional
+    public Ocorrencia abrirOcorrencia(Long equipamentoId, DadosAberturaOcorrencia dados) {
         Equipamento equipamento = equipamentoService.buscarPorId(equipamentoId);
+
+        Ocorrencia novaOcorrencia = new Ocorrencia();
         novaOcorrencia.setEquipamento(equipamento);
+        novaOcorrencia.setEntreguePor(dados.entreguePor());
+        novaOcorrencia.setTecnicoResponsavel(dados.tecnicoResponsavel());
+        novaOcorrencia.setProblemaRelatado(dados.problemaRelatado());
         novaOcorrencia.setStatusOcorrencia(StatusOcorrencia.ABERTA);
         novaOcorrencia.setDataEntrada(LocalDateTime.now());
+
         return ocorrenciaRepository.save(novaOcorrencia);
     }
 
