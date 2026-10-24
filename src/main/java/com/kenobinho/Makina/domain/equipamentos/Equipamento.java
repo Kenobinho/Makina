@@ -5,7 +5,6 @@ import com.kenobinho.Makina.domain.ocorrencias.Ocorrencia;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
