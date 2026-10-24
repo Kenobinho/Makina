@@ -36,6 +36,8 @@ public class Ocorrencia {
     //quem levou
     private String retiradoPor;
 
+    private String tecnicoResponsavel;
+
     //Status
     @Enumerated(EnumType.STRING)
     private StatusOcorrencia statusOcorrencia;

@@ -23,9 +23,9 @@ Não é um sistema de chamados (help desk): quem registra as ocorrências é o p
 - [x] Consultar histórico do equipamento
 - [x] Atualizar status da ocorrência (`ABERTA`, `EM_BANCADA`, `AGUARDANDO_PECA`, `CANCELADA`)
 - [x] Encerrar ocorrência (exige a solução aplicada e registra quem retirou)
-- [ ] Login com autenticação via token (JWT)
-- [ ] Controle de acesso por perfis de usuário (Roles)
-
+- [x] Cadastro de usuários com criptografia BCrypt e Login via token (JWT)
+- [x] Controle de acesso nas rotas com Spring Security (`SecurityFilter`)
+- 
 ## Tecnologias
 
 - Java 25
@@ -36,4 +36,4 @@ Não é um sistema de chamados (help desk): quem registra as ocorrências é o p
 
 ## Status
 
-🚧 Em desenvolvimento (API core concluída; iniciando módulo de Autenticação e Segurança).
+✅ API Back-end concluída (CRUD + Regras de Negócio + Spring Security JWT).

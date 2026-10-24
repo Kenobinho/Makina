@@ -1,6 +1,9 @@
 package com.kenobinho.Makina.domain.ocorrencias;
 
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +23,8 @@ public class OcorrenciaController {
 @PostMapping("/equipamento/{equipamentoId}")
     public ResponseEntity<Ocorrencia> abrirOcorrencia(
             @PathVariable Long equipamentoId,
-            @RequestBody Ocorrencia novaOcorrencia) {
-        Ocorrencia criada =  ocorrenciaService.abrirOcorrencia(equipamentoId, novaOcorrencia);
+            @RequestBody @Valid DadosAberturaOcorrencia dados) {
+        Ocorrencia criada =  ocorrenciaService.abrirOcorrencia(equipamentoId, dados);
         return ResponseEntity.status(HttpStatus.CREATED).body(criada);
     }
 
@@ -39,14 +42,14 @@ public class OcorrenciaController {
 
 
     @PatchMapping("/{id}/status") // atualizar status
-    public ResponseEntity<Ocorrencia> atualizarStatus(@PathVariable Long id, @RequestBody AtualizarStatusDTO dados) {
+    public ResponseEntity<Ocorrencia> atualizarStatus(@PathVariable Long id, @RequestBody @Valid AtualizarStatusDTO dados) {
 
         return ResponseEntity.ok(ocorrenciaService.atualizarStatus(id, dados.novoStatus()));
 
     }
 
     @PatchMapping("/{id}/finalizar")
-    public ResponseEntity<Ocorrencia> finalizarOccorrencia(@PathVariable Long id, @RequestBody FinalizarOcorrenciaDTO dados){
+    public ResponseEntity<Ocorrencia> finalizarOcorrencia(@PathVariable Long id, @RequestBody @Valid FinalizarOcorrenciaDTO dados){
 
         Ocorrencia finalizada = ocorrenciaService.finalizarOcorrencia(
                 id, dados.solucaoAplicada(), dados.retiradoPor());
@@ -54,7 +57,14 @@ public class OcorrenciaController {
     }
 
     //dto
-    public record AtualizarStatusDTO(StatusOcorrencia novoStatus) {}
-    public record FinalizarOcorrenciaDTO(String solucaoAplicada, String retiradoPor) {}
-
+    public record AtualizarStatusDTO(
+            @NotNull(message = "O novo status é obrigatório!")
+            StatusOcorrencia novoStatus
+    ) {}
+    public record FinalizarOcorrenciaDTO(
+            @NotBlank(message = "A solução aplicada é obrigatória!")
+            String solucaoAplicada,
+            @NotBlank(message = "Informe quem retirou o equipamento!")
+            String retiradoPor
+    ) {}
 }
