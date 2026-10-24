@@ -4,10 +4,10 @@ import jakarta.validation.constraints.NotBlank;
 
 public record DadosCadastroUsuario(
 
-        @NotBlank(message = "Login é Obrigatório!!!")
+        @NotBlank(message = "Login é obrigatório!")
         String login,
 
-        @NotBlank(message = "Senha é Obrigatório!!!")
+        @NotBlank(message = "Senha é obrigatória!")
         String senha
 ) {
 }
