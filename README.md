@@ -48,7 +48,7 @@ Toda a idealização do domínio de manutenção de TI, regras de bancada, escol
 
 ## 🚀 Tecnologias Utilizadas
 
-- **Java 21** + **Spring Boot**
+- **Java 25** + **Spring Boot**
 - **Spring Data JPA / Hibernate**
 - **MySQL** (Banco de dados `Makina`)
 - **Spring Security** + **Auth0 Java-JWT** (Autenticação Stateless com Token Bearer)
