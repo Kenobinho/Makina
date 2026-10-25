@@ -25,7 +25,7 @@ public class TokenService {
         try {
             var algoritmo = Algorithm.HMAC256(secret);
             return JWT.create()
-                    .withIssuer("API Makina").withSubject(usuario.getLogin())
+                    .withIssuer("API Makina").withSubject(usuario.getLogin()).withClaim("perfil", usuario.getPerfil().name())
                     .withExpiresAt(dataExpiracao()).sign(algoritmo);
         } catch (JWTCreationException exception) {
             throw new RuntimeException("Erro ao gerar JWT", exception);
