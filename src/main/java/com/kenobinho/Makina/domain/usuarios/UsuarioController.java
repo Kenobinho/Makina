@@ -1,5 +1,6 @@
 package com.kenobinho.Makina.domain.usuarios;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 @RequestMapping("/cadastro")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "bearer-key")
 public class UsuarioController {
 
     private final UsuarioRepository repository;

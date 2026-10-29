@@ -1,6 +1,7 @@
 package com.kenobinho.Makina.domain.equipamentos;
 
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/equipamentos") //rota
 @RequiredArgsConstructor
+@SecurityRequirement(name = "bearer-key")
 public class EquipamentoController {
 
     private final EquipamentoService equipamentoService;
