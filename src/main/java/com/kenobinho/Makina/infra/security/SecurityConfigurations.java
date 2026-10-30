@@ -51,6 +51,9 @@ public class SecurityConfigurations {
                 req.requestMatchers(HttpMethod.POST, "/ocorrencias/**").hasAnyRole("ADMIN", "TECNICO");
                 req.requestMatchers(HttpMethod.PATCH, "/ocorrencias/**").hasAnyRole("ADMIN", "TECNICO");
 
+                req.requestMatchers("/v3/api-docs/**",
+                            "/swagger-ui.html",
+                            "/swagger-ui/**").permitAll();
 
 
                 req.anyRequest().hasRole("ADMIN"); // o restante so passa se for admin
@@ -75,7 +78,7 @@ public class SecurityConfigurations {
 
         // libera o front
         configuration.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:5173"));
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE","PATCH", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
 
